@@ -121,7 +121,6 @@ def registrarCliente():
 
 def realizarCompra():
 
-    
     global idCompraGlobal
     print("")
     print("************************")
@@ -169,6 +168,7 @@ def realizarCompra():
                     if autoSeleccionado: #* si se selecciono un auto
                         #* agregando auto al carrito
                         clienteSeleccionado.agregarAlCarrito(autoSeleccionado)
+                        listaAutos.remove(autoSeleccionado)
 
                         #* mostrando auto seleccionado
                         print(f"Auto {autoSeleccionado.getMarca()} {autoSeleccionado.getModelo()} agregado al carrito.") 
@@ -410,13 +410,13 @@ class Compras():
         print(f"Seguro aplicado: {'Sí' if self.seguro else 'No'}")
         print("")
         print("Auto(s) comprado(s):")
-        print("Placa \t Marca \t Modelo \t Descrip. \t Precio")
+        print("Placa \t\t Marca \t Modelo \t Descrip. \t Precio")
         print("---------------------------------------------------------------------")
         for auto in self.autos:
             print(f"{auto.getPlaca()} \t {auto.getMarca()} \t {auto.getModelo()} \t {auto.getDescripcion()} \t Q{auto.getPrecioUnit()}")
             totalGeneral = auto.getPrecioUnit() + totalGeneral
         print("---------------------------------------------------------------------")
-        print(f"\t \t \t \t \t \t Costo total: Q{self.costoTotal:.2f}")
+        print(f"\t \t \t \t \t  Costo total: Q{self.costoTotal:.2f}")
 
 
         
