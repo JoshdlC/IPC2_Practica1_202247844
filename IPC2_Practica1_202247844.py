@@ -262,18 +262,17 @@ def mostrarCompras():
         print ("")
         return
     else: 
-        print ("===========================================================")
+        print ("===================================================================")
         print ("                        Super Autos GT")
-        print ("===========================================================")
+        print ("===================================================================")
         print ("")
-        print ("Fecha del dia: ", dia)
-        print ("")
+        print ("Fecha: ", dia)
         print ("Ciudad de Guatemala, Guatemala")	
 
         for compra in listaCompras:
             compra.mostrarCompra()
             print ("")
-            print ("===========================================================")
+            print ("===================================================================== ")
             print ("")
 
         #print ("===========================================================")
@@ -403,16 +402,22 @@ class Compras():
 
     def mostrarCompra(self):
         global totalGeneral 
-        print ("")
+        print("---------------------------------------------------------------------")
         print(f"Compra ID: {self.id}")
         print(f"Cliente: {self.cliente.getNombre()}")
         print(f"Correo cliente: {self.cliente.getCorreo()}")
-        print("Auto(s) comprado(s):")
-        for auto in self.autos:
-            print(f"- {auto.getMarca()} {auto.getModelo()} - Q{auto.getPrecioUnit()}")
-            totalGeneral = auto.getPrecioUnit() + totalGeneral
-        print(f"Costo total: Q{self.costoTotal:.2f}")
+        print("")
         print(f"Seguro aplicado: {'Sí' if self.seguro else 'No'}")
+        print("")
+        print("Auto(s) comprado(s):")
+        print("Placa \t Marca \t Modelo \t Descrip. \t Precio")
+        print("---------------------------------------------------------------------")
+        for auto in self.autos:
+            print(f"{auto.getPlaca()} \t {auto.getMarca()} \t {auto.getModelo()} \t {auto.getDescripcion()} \t Q{auto.getPrecioUnit()}")
+            totalGeneral = auto.getPrecioUnit() + totalGeneral
+        print("---------------------------------------------------------------------")
+        print(f"\t \t \t \t \t \t Costo total: Q{self.costoTotal:.2f}")
+
 
         
 
