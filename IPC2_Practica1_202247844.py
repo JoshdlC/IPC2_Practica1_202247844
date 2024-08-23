@@ -74,7 +74,12 @@ def registrarAuto():
     if not anio.isdigit(): #* validacion de anio
         print("El año debe ser un numero")
         return
-            
+    if anio < "1985" or anio > "2025":
+        print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        print("El año debe estar entre 1985 y 2025")
+        print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        return
+    
      #* validacion de precio unitario
     try:
         precioUnit = float(input("Ingrese el precio unitario del auto: "))
@@ -280,13 +285,14 @@ def mostrarCompras():
         print ("Total general de ventas: Q", totalGeneral)
 
 
+
 def datosEstudiante():
     print("")
     print("***************************")
     print("     Datos Estudiante    ")
     print("***************************")
-    print("Nombre: Josue Samuel")
-    print("Apellido: de la Cruz Medina")
+    print("Nombres: Josue Samuel")
+    print("Apellidos: de la Cruz Medina")
     print("Carnet: 202247844")
     print("Curso: IPC2")
     print("****************************")
@@ -301,22 +307,30 @@ def mostrarAutos():
     print("************************")
     print("     Autos Registrados      ")
     print("************************")
-    
+    print("")
+    print("Seleccione un auto")
+    print ("Ingrese 0 para regresar al menu principal:")
+    print ("")
+    #print("Id \t Placa \t\t Marca \t Modelo \t Descrip. \t Precio")
+    print("------------------------------------------------------------------------------")
+
     for i, auto in enumerate(listaAutos, start=1):
         #print("#"+i) 
-        print(f"{i}. Placa: {auto.getPlaca()}, Marca: {auto.getMarca()}, Modelo: {auto.getModelo()}, Descripcion: {auto.getDescripcion()}, Precio: Q{auto.getPrecioUnit()}")
+        print(f"{i}. \n Placa: {auto.getPlaca()} \n Marca: {auto.getMarca()} \n Modelo: {auto.getModelo()} \n Descripción: {auto.getDescripcion()} \t Precio: Q{auto.getPrecioUnit()}")
         #i+=1
     
-    print("************************")
+    print("------------------------------------------------------------------------------")
     print ("")
 
     opcionAuto = input("Seleccione un auto: ")
 
     #* validacion de opcion
-    if not opcionAuto.isdigit() or int(opcionAuto) < 1 or int(opcionAuto) > len(listaAutos):
+    if not opcionAuto.isdigit() or int(opcionAuto) <= 0 or int(opcionAuto) > len(listaAutos):
         print("La opcion debe ser un numero")
         return
-
+    if opcionAuto == "0":
+        print("No se selecciono ningun auto, regresando al menu principal")
+        return
     
     opcionAuto = int(opcionAuto)
 
