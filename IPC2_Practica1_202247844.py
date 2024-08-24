@@ -67,6 +67,7 @@ def registrarAuto():
         print ("   La placa ya existe, ingrese otra placa")
         print ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
         return
+    placa = placa.upper()
     marca = input("Ingrese la marca del auto: ")
     modelo = input("Ingrese el modelo del auto: ")
     descripcion = input("Ingrese la descripcion del auto: ")
@@ -316,7 +317,7 @@ def mostrarAutos():
 
     for i, auto in enumerate(listaAutos, start=1):
         #print("#"+i) 
-        print(f"{i}. \n Placa: {auto.getPlaca()} \n Marca: {auto.getMarca()} \n Modelo: {auto.getModelo()} \n Descripción: {auto.getDescripcion()} \t Precio: Q{auto.getPrecioUnit()}")
+        print(f"{i}. \n Placa: {auto.getPlaca()} \n Marca: {auto.getMarca()} \n Modelo: {auto.getModelo()} \n Descripción: {auto.getDescripcion()} \n Precio: Q{auto.getPrecioUnit():.2f}")
         #i+=1
     
     print("------------------------------------------------------------------------------")
@@ -369,6 +370,9 @@ class Auto():
     def getPrecioUnit(self):
         return self.precioUnit
     
+    def setPrecioUnit(self, precio):
+        self.precioUnit = precio
+    
 
 
 class Cliente():
@@ -393,7 +397,7 @@ class Cliente():
 
     def mostrarCarrito(self):
         for auto in self.carritoCompras:
-            print(f"Placa: {auto.getPlaca()}, Marca: {auto.getMarca()}, Modelo: {auto.getModelo()}, Descripcion: {auto.getDescripcion()}, Precio: Q{auto.getPrecioUnit()}")
+            print(f"Placa: {auto.getPlaca()}, Marca: {auto.getMarca()}, Modelo: {auto.getModelo()}, Descripcion: {auto.getDescripcion()}, Precio: Q{auto.getPrecioUnit():.2f}")
     
 
 
@@ -410,13 +414,14 @@ class Compras():
         for auto in self.autos:
             precio = auto.getPrecioUnit()
             if self.seguro:
-                precio *= 1.15
+                precio *= 1.15 #* Aplica el 15% de seguro
+                auto.setPrecioUnit(precio) #* actualizando precio del auto
             total += precio
         return total
 
     def mostrarCompra(self):
         global totalGeneral 
-        print("---------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------")
         print(f"Compra ID: {self.id}")
         print(f"Cliente: {self.cliente.getNombre()}")
         print(f"Correo cliente: {self.cliente.getCorreo()}")
@@ -424,18 +429,16 @@ class Compras():
         print(f"Seguro aplicado: {'Sí' if self.seguro else 'No'}")
         print("")
         print("Auto(s) comprado(s):")
-        print("Placa \t\t Marca \t Modelo \t Descrip. \t Precio")
-        print("---------------------------------------------------------------------")
+        print("Placa \t\t Marca \t\t Modelo \t Descrip. \t\t Precio")
+        print("---------------------------------------------------------------------------------------------------")
         for auto in self.autos:
-            print(f"{auto.getPlaca()} \t {auto.getMarca()} \t {auto.getModelo()} \t {auto.getDescripcion()} \t Q{auto.getPrecioUnit()}")
+            print(f"{auto.getPlaca()} \t {auto.getMarca()} \t {auto.getModelo()} \t {auto.getDescripcion()} \t Q{auto.getPrecioUnit():.2f}")
             totalGeneral = auto.getPrecioUnit() + totalGeneral
-        print("---------------------------------------------------------------------")
+        print("---------------------------------------------------------------------------------------------------")
         print(f"\t \t \t \t \t  Costo total: Q{self.costoTotal:.2f}")
 
 
-        
-
-    
+   
 
 #* ejecucion del programa
 class Main():
