@@ -429,7 +429,7 @@ class Compras():
         print(f"Seguro aplicado: {'Sí' if self.seguro else 'No'}")
         print("")
         print("Auto(s) comprado(s):")
-        print("Placa \t\t Marca \t\t Modelo \t Descrip. \t\t Precio")
+        print("Placa \t\t Marca \t\t Modelo \t Descrip. \t Precio")
         print("---------------------------------------------------------------------------------------------------")
         for auto in self.autos:
             print(f"{auto.getPlaca()} \t {auto.getMarca()} \t {auto.getModelo()} \t {auto.getDescripcion()} \t Q{auto.getPrecioUnit():.2f}")
